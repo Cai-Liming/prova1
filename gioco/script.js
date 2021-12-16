@@ -63,4 +63,4 @@ function moveup() {
     redSquare.speedX += 10;
   }
 
-   
+     
