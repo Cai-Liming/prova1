@@ -10,8 +10,11 @@ var redSquare = {
     height: 20,
     x: 10,
     y: 120,
-    color: "red"
-  };
+    color: "red" ,
+    speedY:0,
+    speedX:0,
+  }; 
+  
 var myGameArea = {  
     canvas : document.createElement("canvas"),
     start : function() {
@@ -21,34 +24,43 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20); //ogni 20 ms chiamo il metodo updateGameArea
 
+    
     },
+
     draw: function (component) {
+     
         this.context.fillStyle = component.color;
         this.context.fillRect(component.x, component.y, component.width, component.height);
       },
+     
       clear: function(){
         this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
-      }
-    
+      },
+    move: function(){
+         redSquare.y = redSquare.y + redSquare.speedY;
+         redSquare.x = redSquare.x + redSquare.speedX;
+      },
 }
 function updateGameArea() {
   myGameArea.clear();
+  myGameArea.move();
   myGameArea.draw(redSquare);
 }
+
 function moveup() {
-    redSquare.y -= 10;
+    redSquare.speedY -= 10;
   }
   
   function movedown() {
-    redSquare.y += 10;
+    redSquare.speedY += 10;
   }
   
   function moveleft() {
-    redSquare.x -= 10;
+    redSquare.speedX -= 10;
   }
   
   function moveright() {
-    redSquare.x += 10;
+    redSquare.speedX += 10;
   }
 
    
