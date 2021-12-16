@@ -25,23 +25,30 @@ var myGameArea = {
     draw: function (component) {
         this.context.fillStyle = component.color;
         this.context.fillRect(component.x, component.y, component.width, component.height);
+      },
+      clear: function(){
+        this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
       }
     
 }
+function updateGameArea() {
+  myGameArea.clear();
+  myGameArea.draw(redSquare);
+}
 function moveup() {
-    redSquare.y -= 30;
+    redSquare.y -= 10;
   }
   
   function movedown() {
-    redSquare.y += 30;
+    redSquare.y += 10;
   }
   
   function moveleft() {
-    redSquare.x -= 30;
+    redSquare.x -= 10;
   }
   
   function moveright() {
-    redSquare.x += 30;
+    redSquare.x += 10;
   }
 
    
