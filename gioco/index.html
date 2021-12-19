@@ -14,9 +14,11 @@
     <title>Document</title>
 </head>
 <body onload="startGame()">
-    <button onclick="moveup()" id="up">up</button>
-    <button onclick="movedown()" id="down">down</button>
-    <button onclick="moveleft()" id="left">left</button>
-    <button onclick="moveright()" id="right">right</button>
+    <div style="text-align:center;width:480px;">
+    <button onmousedown="moveup()" onmouseup="clearmove()">UP</button><br><br>
+<button onmousedown="moveleft()" onmouseup="clearmove()">LEFT</button>
+<button onmousedown="moveright()" onmouseup="clearmove()">RIGHT</button><br><br>
+<button onmousedown="movedown()" onmouseup="clearmove()">DOWN</button>
+    </div>
 </body>
 </html>

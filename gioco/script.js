@@ -1,6 +1,7 @@
 function startGame() {
     myGameArea.start();
     myGameArea.draw(redSquare);
+    animatedObject.loadImages();
 }
 function updateGameArea() {
     myGameArea.draw(redSquare);
@@ -26,6 +27,16 @@ var myGameArea = {
 
     
     },
+    drawGameObject: function(gameObject) {
+      this.context.drawImage(
+        gameObject.image,
+        gameObject.x,
+        gameObject.y,
+        gameObject.width,
+        gameObject.height
+      );
+    },
+  
 
     draw: function (component) {
      
@@ -40,11 +51,13 @@ var myGameArea = {
          redSquare.y = redSquare.y + redSquare.speedY;
          redSquare.x = redSquare.x + redSquare.speedX;
       },
+      
 }
 function updateGameArea() {
   myGameArea.clear();
   myGameArea.move();
   myGameArea.draw(redSquare);
+  myGameArea.drawGameObject(animatedObject);
 }
 
 function moveup() {
@@ -62,5 +75,25 @@ function moveup() {
   function moveright() {
     redSquare.speedX += 10;
   }
+  function clearmove() {
+    redSquare.speedX = 0; 
+    redSquare.speedY = 0; 
+}
+var animatedObject = {
+  speedX: 0,
+  speedY: 0,
+  width: 60,
+  height: 60,
+  x: 10,
+  y: 120,
+
+loadImages: function() {
+    this.image = new Image(this.width, this.height);
+    this.image.src = "https://i.ibb.co/M7WMMSF/Run-000.png"; //Qui metti una tua immagine
+  }
+};
+
+
+
 
      
