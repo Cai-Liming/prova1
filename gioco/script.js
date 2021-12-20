@@ -58,24 +58,23 @@ var redSquare = {
 function clearmove() {
   animatedObject.speedX = 0; 
   animatedObject.speedY = 0; 
-
+}
 function moveup() {
-   animatedObject.speedY -= 10;
+   animatedObject.speedY -= 1;
   }
   
   function movedown() {
-    animatedObject.speedY += 10;
+    animatedObject.speedY += 1;
   }
   
   function moveleft() {
-    animatedObject.speedX -= 10;
+    animatedObject.speedX -= 1;
   }
   
   function moveright() {
-    animatedObject.speedX += 10;
+    animatedObject.speedX += 1;
   }
- 
-}
+
 function updateGameArea() {
   myGameArea.clear();
   myGameArea.move();
