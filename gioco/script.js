@@ -1,20 +1,10 @@
 function startGame() {
     myGameArea.start();
-    myGameArea.draw(redSquare);
+    //myGameArea.draw(redSquare);
     animatedObject.loadImages();
 }
-function updateGameArea() {
-    myGameArea.draw(redSquare);
-  }
-var redSquare = {
-    width: 20,
-    height: 20,
-    x: 10,
-    y: 120,
-    color: "red" ,
-    speedY:0,
-    speedX:0,
-  }; 
+
+
   
 var myGameArea = {  
     canvas : document.createElement("canvas"),
@@ -27,16 +17,6 @@ var myGameArea = {
 
     
     },
-    drawGameObject: function(gameObject) {
-      this.context.drawImage(
-        gameObject.image,
-        gameObject.x,
-        gameObject.y,
-        gameObject.width,
-        gameObject.height
-      );
-    },
-  
 
     draw: function (component) {
      
@@ -51,34 +31,57 @@ var myGameArea = {
          redSquare.y = redSquare.y + redSquare.speedY;
          redSquare.x = redSquare.x + redSquare.speedX;
       },
+
+      drawGameObject: function(gameObject) {
+        this.context.drawImage(
+          gameObject.image,
+          gameObject.x,
+          gameObject.y,
+          gameObject.width,
+          gameObject.height
+        );
+      },
+
       
+}
+
+var redSquare = {
+  width: 20,
+  height: 20,
+  x: 10,
+  y: 120,
+  color: "red" ,
+  speedY:0,
+  speedX:0,
+}; 
+
+function clearmove() {
+  animatedObject.speedX = 0; 
+  animatedObject.speedY = 0; 
+
+function moveup() {
+   animatedObject.speedY -= 10;
+  }
+  
+  function movedown() {
+    animatedObject.speedY += 10;
+  }
+  
+  function moveleft() {
+    animatedObject.speedX -= 10;
+  }
+  
+  function moveright() {
+    animatedObject.speedX += 10;
+  }
+ 
 }
 function updateGameArea() {
   myGameArea.clear();
   myGameArea.move();
-  myGameArea.draw(redSquare);
   myGameArea.drawGameObject(animatedObject);
-}
-
-function moveup() {
-    redSquare.speedY -= 10;
-  }
-  
-  function movedown() {
-    redSquare.speedY += 10;
-  }
-  
-  function moveleft() {
-    redSquare.speedX -= 10;
-  }
-  
-  function moveright() {
-    redSquare.speedX += 10;
-  }
-  function clearmove() {
-    redSquare.speedX = 0; 
-    redSquare.speedY = 0; 
-}
+  animatedObject.update();
+};
 var animatedObject = {
   speedX: 0,
   speedY: 0,
@@ -86,10 +89,30 @@ var animatedObject = {
   height: 60,
   x: 10,
   y: 120,
+  imageList: [], //Vettore che conterrà tutte le immagini caricate
+  contaFrame: 0, //Tiene conto di quanti frame sono passati
+  actualFrame: 0, //Specifica quale frame disegnare
 
-loadImages: function() {
-    this.image = new Image(this.width, this.height);
-    this.image.src = "https://i.ibb.co/M7WMMSF/Run-000.png"; //Qui metti una tua immagine
+  update: function() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.contaFrame++;
+    if (this.contaFrame == 5) {
+      this.contaFrame = 0;
+      this.actualFrame = (1 + this.actualFrame) % this.imageList.length;
+      //console.log(this.actualFrame);
+      this.image = this.imageList[this.actualFrame];
+    }
+  },
+
+  loadImages: function() {
+     for (imgPath of running) {
+      var img = new Image(this.width, this.height);
+      img.src = imgPath;
+      this.imageList.push(img);
+      //console.log(img);
+    }
+    this.image = this.imageList[this.actualFrame];
   }
 };
 
