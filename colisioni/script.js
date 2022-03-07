@@ -7,8 +7,6 @@ function startGame() {
 
 }
 
-
-  
 var myGameArea = {  
     canvas : document.createElement("canvas"),
     start : function() {
@@ -44,26 +42,7 @@ var myGameArea = {
           gameObject.height
         );
       },
-      crashWith: function(otherobj) {
-        var myleft = this.tryX;
-        var myright = this.tryX + this.width;
-        var mytop = this.tryY;
-        var mybottom = this.tryY + this.height;
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + otherobj.width;
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + otherobj.height;
-        var crash = true;
-    
-        //NON HO COLLISIONI SE: Un oggetto è sopra oppure sotto oppure a destra oppure a sinistra dell’altro
-        if((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-          this.x = this.tryX; //Se non ho collisioni sposto realmente l’oggetto
-          this.y = this.tryY;
-        }
-        else //HO COLLISIONI MA PER ORA NON FACCIO NIENTE
-        {
-        }
-      },
+      
     
     
       
@@ -84,15 +63,28 @@ var animatedObject = {
     this.tryY = this.y + this.speedY;
     this.tryX = this.x + this.speedX;
 
-    //Prima di spostarmi realmente verifico che non ci siano collisioni
-    this.crashWith(bushObject);
-
+    
+        //Prima di spostarmi realmente verifico che non ci siano collisioni
+        collision = false;
+        if (collision == false) {
+          collision = this.crashWith(bushObject);
+          console.log(collision);
+        }
+        if (collision == false) {
+          collision = this.crashWith(crateObject);
+        }
+    
+        if (!collision) {
+          this.x = this.tryX;
+          this.y = this.tryY;
+        }
     this.contaFrame++;
     if (this.contaFrame == 3) {
       this.contaFrame = 0;
       this.actualFrame = (1 + this.actualFrame) % this.imageList.length;
       this.image = this.imageList[this.actualFrame];
     }
+    
   },
   loadImages: function() {
      for (imgPath of running) {
@@ -102,8 +94,29 @@ var animatedObject = {
       //console.log(img);
     }
     this.image = this.imageList[this.actualFrame];
+  },
+  crashWith: function(otherobj) {
+    var myleft = this.tryX;
+    var myright = this.tryX + this.width -45;
+    var mytop = this.tryY;
+    var mybottom = this.tryY + this.height;
+    var otherleft = otherobj.x;
+    var otherright = otherobj.x + otherobj.width;
+    var othertop = otherobj.y;
+    var otherbottom = otherobj.y + otherobj.height;
+    var crash = true;
+
+    //NON HO COLLISIONI SE: Un oggetto è sopra oppure sotto oppure a destra oppure a sinistra dell’altro
+    if((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+      return false;
+    }
+    else //HO COLLISIONI MA PER ORA NON FACCIO NIENTE
+    {
+      return true;
+    }
   }
 };
+
 var bushObject = {
     width: 100,
     height: 50,
@@ -189,7 +202,7 @@ function updateGameArea() {
   myGameArea.drawGameObject(bushObject);
   myGameArea.drawGameObject(crateObject);
   animatedObject.update();
-  myGameArea.crashWith();
+  //myGameArea.crashWith();
 };
 
 
