@@ -97,9 +97,9 @@ var animatedObject = {
   },
   crashWith: function(otherobj) {
     var myleft = this.tryX;
-    var myright = this.tryX + this.width -45;
+    var myright = this.tryX + this.width -50;
     var mytop = this.tryY;
-    var mybottom = this.tryY + this.height;
+    var mybottom = this.tryY + this.height-10;
     var otherleft = otherobj.x;
     var otherright = otherobj.x + otherobj.width;
     var othertop = otherobj.y;
