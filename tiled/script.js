@@ -1,2 +1,2 @@
-import GameArea from "./GameArea";
+import GameArea from "./gameArea.js";
 let myGameArea = new GameArea();

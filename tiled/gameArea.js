@@ -1,16 +1,16 @@
-import Level from "./gameArea.js";
+import Levels from "./Levels.js";
 import Level1 from "./livello1.js";
 export default class GameArea {
   constructor() {
-    this.level = new Level(
+    this.level = new Levels(
       20,
       20,
       32,
       32,
       Level1.water,
-      Level1.path,
-      Level1.obstacles,
-      "https://i.ibb.co/s9hsrmx/Path-And-Objects.png",
+      Level1.livello,
+      Level1.ponte,      
+      "title.png",
       512,
       512
     );

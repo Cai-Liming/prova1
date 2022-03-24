@@ -25,20 +25,27 @@ export default class Levels {
 
     draw(canvasContext) {
         //Disegno l'acqua
-        for (let i = 0; i < this.water.length; i++) {
+       this.drawLayer(this.water, canvasContext);
+       this.drawLayer(this.path, canvasContext);
+       this.drawLayer(this.obstacles, canvasContext);
+    }
+
+    drawLayer(layerMap, canvasContext)
+    {
+        for (let i = 0; i < layerMap.length; i++) {
             //Ottengo le coordinate sulla canvas
             let dx = (i % this.level_width) * 32;
             let dy = Math.floor(i / this.level_height) * 32;
-            let tile = this.water[i];
+            let tile = layerMap[i];
             
             //Ottengo le coordinate sulla tilemap
-            let sx = ((tile  % (this.tileMapImageWidth/32))-1) * 32; //Devo fare -1 perchè il primo tile è il n°1
+            let sx = ((tile  % (this.tileMapImageWidth/32))-1) * 32;
             let sy = Math.floor(tile / (this.tileMapImgHeight/32)) * 32;
 
-
-            if (this.water[i] != 0) {
+            if (tile != 0) {
                 canvasContext.drawImage(this.tileMapImage, sx, sy, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
             }
+            
         }
     }
 }
