@@ -9,7 +9,11 @@ export default class GameArea {
       32,
       Level1.water,
       Level1.livello,
-      Level1.ponte,      
+      Level1.ponte,   
+      Level1.blocco,
+      Level1.terraMare,
+      Level1.barca,
+      Level1.vasi,
       "title.png",
       512,
       512

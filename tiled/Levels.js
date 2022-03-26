@@ -6,10 +6,14 @@ export default class Levels {
     water; //Mappa dei diversi livelli di tiles
     path;
     obstacles;
+    blocco;
+    terraMare;
+    barca;
+    vasi;
     tileMapImage //L'immagine da cui recuperare tutti i tile
     tileMapImgHeight; //Le dimensioni della mappa da cui recupero i tile
     tileMapImageWidth;
-    constructor(level_width, level_height, tile_width, tile_height, water, path, obstacles, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
+    constructor(level_width, level_height, tile_width, tile_height, water, path, obstacles, blocco, terraMare, barca, vasi, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
         this.tile_width = tile_width;
@@ -17,6 +21,10 @@ export default class Levels {
         this.water = water;
         this.path = path;
         this.obstacles = obstacles;
+        this.blocco = blocco;
+        this.terraMare = terraMare
+        this.barca = barca;
+        this.vasi = vasi;
         this.tileMapImage = new Image(this.width, this.height);
         this.tileMapImage.src = tileMapsrc;
         this.tileMapImgHeight = tileMapImgHeight;
@@ -28,6 +36,10 @@ export default class Levels {
        this.drawLayer(this.water, canvasContext);
        this.drawLayer(this.path, canvasContext);
        this.drawLayer(this.obstacles, canvasContext);
+       this.drawLayer(this.blocco, canvasContext);
+       this.drawLayer(this.terraMare,canvasContext);
+       this.drawLayer(this.barca, canvasContext);
+       this.drawLayer(this.vasi, canvasContext);
     }
 
     drawLayer(layerMap, canvasContext)
