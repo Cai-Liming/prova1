@@ -1,7 +1,10 @@
 import Levels from "./Levels.js";
 import Level1 from "./livello1.js";
+import AnimatedObject from "./ AnimatedObject.js";
+import NinjaSprites from "./NinjaSprites.js";
 export default class GameArea {
   constructor() {
+    this.ninja = new AnimatedObject(NinjaSprites.running, 60,60,10,120);
     this.level = new Levels(
       20,
       20,
@@ -26,6 +29,15 @@ export default class GameArea {
     this.interval = setInterval(this.updateGameArea, 20); //ogni 20 ms chiamo il metodo updateGameArea
   }
 
+  drawAnimatedObject(gameObject) {
+    this.context.drawImage(
+      gameObject.image,
+      gameObject.x,
+      gameObject.y,
+      gameObject.width,
+      gameObject.height
+    );
+  }
   clear = () => {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   };
@@ -33,5 +45,8 @@ export default class GameArea {
   updateGameArea = () => {
     this.clear();
     this.level.draw(this.context);
+    this.obstaclesVector = this.level.obstaclesVector;
+    this.ninja.update(this.obstaclesVector);
+    this.ninja.draw(this.context);
   };
 }
