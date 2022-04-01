@@ -15,6 +15,7 @@ export default class Levels {
     tileMapImage //L'immagine da cui recuperare tutti i tile
     tileMapImgHeight; //Le dimensioni della mappa da cui recupero i tile
     tileMapImageWidth;
+    obstaclesVector = [];
     constructor(level_width, level_height, tile_width, tile_height, water, path, obstacles, blocco, terraMare, barca, vasi, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
@@ -52,7 +53,8 @@ export default class Levels {
                 let dx =(i % this.level_width) * 32;
                 let dy =Math.floor(i / this.level_height) * 32;
                 let obstacle = new RawObject(dx, dy, tile_width,tile_height)
-                this.pushLayerObstacleVector.push(obstacle);
+                this.obstaclesVector.push(obstacle);
+
             }
         }
     }
