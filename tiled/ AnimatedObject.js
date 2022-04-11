@@ -57,7 +57,7 @@ export default class AnimatedObject {
       var crash = true;
   
       //Collisioni con il bordo
-      if (mytop < 0 || mybottom > 270 || myleft < 0 || myright > 480) {
+      if (mytop < 0 || mybottom > 370 || myleft < 0 || myright > 635) {
         return true;
       }
   

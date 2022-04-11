@@ -51,7 +51,7 @@ export default class Levels {
         for(let i = 0; i<layerMap.length; i++){
             if(layerMap[i] != 0){
                 let dx =(i % this.level_width) * 32;
-                let dy =Math.floor(i / this.level_height) * 32;
+                let dy =Math.floor(i / this.level_width) * 32;
                 let obstacle = new RawObject(dx, dy, tile_width,tile_height)
                 this.obstaclesVector.push(obstacle);
 
@@ -64,7 +64,7 @@ export default class Levels {
         for (let i = 0; i < layerMap.length; i++) {
             //Ottengo le coordinate sulla canvas
             let dx = (i % this.level_width) * 32;
-            let dy = Math.floor(i / this.level_height) * 32;
+            let dy = Math.floor(i / this.level_width) * 32;
             let tile = layerMap[i];
             
             //Ottengo le coordinate sulla tilemap
@@ -73,6 +73,11 @@ export default class Levels {
 
             if (tile != 0) {
                 canvasContext.drawImage(this.tileMapImage, sx, sy, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
+            }
+
+            if(tile==16)
+            {
+                console.log(sx + " " + sy)
             }
             
         }
