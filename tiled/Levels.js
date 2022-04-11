@@ -68,8 +68,8 @@ export default class Levels {
             let tile = layerMap[i];
             
             //Ottengo le coordinate sulla tilemap
-            let sx = ((tile  % (this.tileMapImageWidth/32))-1) * 32;
-            let sy = Math.floor(tile / (this.tileMapImgHeight/32)) * 32;
+            let sx = ((tile-1)  % (this.tileMapImageWidth/32)) * 32;
+            let sy = Math.floor((tile-1) / (this.tileMapImgHeight/32)) * 32;
 
             if (tile != 0) {
                 canvasContext.drawImage(this.tileMapImage, sx, sy, this.tile_width, this.tile_height, dx, dy, this.tile_width, this.tile_height);
