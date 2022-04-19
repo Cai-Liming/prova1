@@ -12,7 +12,6 @@ export default class GameArea {
       32,
       Level1.water,
       Level1.livello,
-      Level1.blocco,
       Level1.ponte,      
       Level1.terraMare,
       Level1.barca,
@@ -76,7 +75,7 @@ export default class GameArea {
   };
 
   clearmove = () => {
-    this.ninja.speedX = 0;
+    this.ninja.speedX = 0; 
     this.ninja.speedY = 0;
   };
 }

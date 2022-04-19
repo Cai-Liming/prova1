@@ -16,7 +16,7 @@ export default class Levels {
     tileMapImgHeight; //Le dimensioni della mappa da cui recupero i tile
     tileMapImageWidth;
     obstaclesVector = [];
-    constructor(level_width, level_height, tile_width, tile_height, water, path, obstacles, blocco, terraMare, barca, vasi, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
+    constructor(level_width, level_height, tile_width, tile_height, water, path, obstacles, terraMare, barca, vasi, tileMapsrc, tileMapImgHeight, tileMapImageWidth) {
         this.level_width = level_width;
         this.level_height = level_height;
         this.tile_width = tile_width;
@@ -24,7 +24,6 @@ export default class Levels {
         this.water = water;
         this.path = path;
         this.obstacles = obstacles;
-        this.blocco = blocco;
         this.terraMare = terraMare
         this.barca = barca;
         this.vasi = vasi;
@@ -42,7 +41,6 @@ export default class Levels {
        this.drawLayer(this.water, canvasContext);
        this.drawLayer(this.path, canvasContext);
        this.drawLayer(this.obstacles, canvasContext);
-       this.drawLayer(this.blocco, canvasContext);
        this.drawLayer(this.terraMare,canvasContext);
        this.drawLayer(this.barca, canvasContext);
        this.drawLayer(this.vasi, canvasContext);
