@@ -22,6 +22,7 @@ export default class AnimatedObject {
     update(obstacleVector) {
       this.tryY = this.y + this.speedY;
       this.tryX = this.x + this.speedX;
+     
   
       //Prima di spostarmi realmente verifico che non ci siano collisioni
       let collision = false;

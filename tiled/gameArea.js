@@ -4,6 +4,7 @@ import AnimatedObject from "./ AnimatedObject.js";
 import NinjaSprites from "./NinjaSprites.js";
 export default class GameArea {
   constructor() {
+    this.levelIndex = 0;
     this.ninja = new AnimatedObject(NinjaSprites.running, 60,60,10,120);
     this.level = new Levels(
       20,
@@ -54,8 +55,28 @@ export default class GameArea {
     this.obstaclesVector = this.level.obstaclesVector;
     this.ninja.update(this.obstaclesVector);
     this.ninja.draw(this.context);
-    
+    switch (this.levelIndex){
+      case 0:
+            
+        this.level.water = level1.water
+
+        if (this.ninja.x > 600){
+          this.levelIndex = 1;
+        }
+        if (this.ninja.y > 500){
+          this.levelIndex = 2;
+        }
+        break;
+      case 1:
+        
+        this.level.water = level2.water
+        
+        break;
+
+    }
   };
+
+
 
   move = e => {
     switch (e.key) {
